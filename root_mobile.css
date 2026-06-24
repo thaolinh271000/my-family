@@ -1,0 +1,166 @@
+/* mobile: 360px -> 767px -------------------------------------------------- */
+
+p {
+    font-size: var(--fontSizeBodysSmall);
+}
+
+button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* header -------------------------------------------------- */
+
+#nav-horizontal {
+    padding-right: 40px;
+}
+
+.avatar-frame a {
+    width: 100px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    margin: 16px;
+}
+
+.avatar-frame a {
+    width: 120px;
+}
+
+.language-display {
+    gap: 12px;
+}
+
+.language-display .language p {
+    display: none;
+}
+
+#nav-vertical .nav-list svg {
+    width: 20px;
+    height: 20px;
+}
+
+#nav-vertical .nav-list.active {
+    width: 68px;
+    height: 68px;
+    border-radius: 8px 8px 0 0;
+}
+
+#nav-vertical .nav-list-group {
+    width: fit-content;
+    flex-direction: row;
+    border-radius: 0;
+    box-shadow: none;
+    height: 60px;
+    gap: 20px;
+}
+
+#nav-vertical .nav-list-group:hover p {
+    display: none;
+}
+
+#nav-vertical {
+    width: 100vw;
+    height: fit-content;
+    bottom: 0;
+    justify-content: center;
+    background-color: var(--mainColor1);
+}
+
+#nav-vertical .nav-list {
+    width: 60px;
+    height: 60px;
+    align-self: flex-end;
+}
+
+#nav-vertical .nav-list-group:hover {
+    width: fit-content;
+}
+
+#nav-vertical .nav-list-group:hover .nav-list.active {
+    background-color: var(--mainColor2);
+    width: 68px;
+}
+
+/* content -------------------------------------------------- */
+
+.banner .text-background h1 {
+    font-size: 32px;
+}
+
+/* button -------------------------------------------------- */
+
+button p {
+    display: none;
+}
+
+button {
+    padding: 8px 16px;
+}
+
+.viewfull-btn {
+    border: 0;
+}
+
+/* pic grid -------------------------------------------------- */
+.pics-group {
+    flex-direction: column;
+    gap: 60px;
+}
+
+.pic-info {
+    width: 100%;
+    z-index: 999;
+    padding: 16px;
+    gap: 20px;
+}
+
+.pics-group .pics {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.pics-group .pics img:hover {
+    transform: scale(1);
+}
+
+.download-btn {
+    background-color: transparent;
+}
+
+.btn-left {
+    gap: 0;
+    height: fit-content;
+}
+
+button.viewfull-btn, button.download-btn {
+    padding: 8px;
+    height: fit-content;
+}
+
+.viewfull-btn:hover {
+    background-color: var(--subColor2);
+}
+
+.viewfull-btn:hover svg path {
+    fill: var(--mainColor1);
+}
+
+.swiper-button-prev, .swiper-button-next {
+    width: 60px;
+    height: 60px;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 24px;
+}
+
+.popup-header {
+    height: fit-content;
+    padding: 20px 20px;
+}
+
+.popup-header p {
+    display: flex;
+}

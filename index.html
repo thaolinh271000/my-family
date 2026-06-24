@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="root.js" defer></script>
+    <link rel="stylesheet" href="root.css">
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .banner {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .mySwiperBig {
+            height: 75vh;
+            width: 100vw;
+        }
+
+        .mySwiperSmall {
+            width: 100vw;
+            height: 16vh;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .mySwiperSmall .swiper-slide img {
+            opacity: 0.4;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mySwiperSmall .swiper-slide-thumb-active img {
+            opacity: 1;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* text --------------------------------------------- */
+        .banner .mySwiperBig {
+            position: relative;
+        }
+
+        .banner .mySwiperBig .text-background {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            bottom: 0;
+            height: 100%;
+
+            background: linear-gradient(to bottom,
+                    transparent 50%,
+                    black 80%,
+                    black 100%);
+        }
+
+        .banner .mySwiperBig .text-background .text-group {
+            display: flex;
+            gap: 40px;
+            flex-direction: column;
+            padding-left: 12vw;
+            padding-right: 32vw;
+
+            position: absolute;
+            bottom: 80px;
+        }
+
+        .banner .mySwiperBig .text-background .text-group .text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .banner .text-background h1 {
+            color: white;
+        }
+
+        .banner .text-background .text p {
+            color: white;
+        }
+
+        .banner .text-background .text p:last-of-type {
+            display: none;
+        }
+
+        /* button --------------------------------------------- */
+
+        .banner button {
+            background-color: var(--mainColor2);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .banner button svg path {
+            fill: var(--mainColor1);
+        }
+
+        .banner button p {
+            color: var(--mainColor1);
+            font-weight: var(--fontSemiBold);
+        }
+
+        .banner .text-background {
+            display: flex;
+            gap: 40px;
+        }
+
+        .banner button:hover {
+            background-color: var(--subColor2);
+        }
+
+        /* desktop: 1024px -> 1439px -------------------------------------------------- */
+        @media screen and (max-width: 1439px) {}
+
+        /* tablet: 768px -> 1023px  -------------------------------------------------- */
+        @media (hover:none) and (max-width: 1023px) {
+            .banner .mySwiperBig .text-background .text-group {
+                padding-left: 16vw;
+                padding-right: 16vw;
+                bottom: 60px;
+            }
+
+            .mySwiperBig {
+                height: 80vh;
+            }
+
+            .mySwiperSmall {
+                height: 12vh;
+            }
+
+        }
+
+        /* mobile: 360px -> 767px -------------------------------------------------- */
+        @media screen and (max-width: 767px) {
+            .banner .mySwiperBig .text-background .text-group {
+                padding-left: 12vw;
+                padding-right: 12vw;
+                bottom: 40px;
+            }
+
+            .banner button p {
+                display: flex;
+            }
+
+            .banner .text-background .text p:first-of-type {
+                display: none;
+            }
+
+            .banner .text-background .text p:last-of-type {
+                display: flex;
+            }
+
+            .banner {
+                height: 90vh;
+            }
+
+        }
+    </style>
+
+    <link rel="stylesheet" href="root_desktop.css" media="screen and (max-width: 1439px)">
+    <link rel="stylesheet" href="root_tablet.css" media="screen and (max-width: 1023px)">
+    <link rel="stylesheet" href="root_mobile.css" media="screen and (max-width: 767px)">
+
+</head>
+
+<body>
+    <header>
+        <section id="nav-horizontal">
+            <div class="avatar-frame">
+                <a href="index.html"><img src="pics/me.jpg" alt="" class="avatar"></a>
+            </div>
+            <div class="language-display">
+                <div class="language active">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 36 36"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <g fill-rule="evenodd" clip-rule="evenodd">
+                                <path fill="#da251d"
+                                    d="M18 0c9.94 0 18 8.06 18 18s-8.06 18-18 18S0 27.94 0 18 8.06 0 18 0z" opacity="1"
+                                    data-original="#da251d"></path>
+                                <path fill="#ffff00"
+                                    d="m10 15.75 4.944 3.592-1.888 5.812L18 21.563l4.944 3.592-1.89-5.812L26 15.75h-6.132L18 10l-1.868 5.75z"
+                                    opacity="1" data-original="#ffff00"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <p>VN</p>
+                </div>
+                <p>|</p>
+                <div class="language">
+                    <p>EN</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <circle cx="256" cy="256" r="256" fill="#f0f0f0" opacity="1" data-original="#f0f0f0">
+                            </circle>
+                            <g fill="#0052b4">
+                                <path
+                                    d="M52.92 100.142c-20.109 26.163-35.272 56.318-44.101 89.077h133.178zM503.181 189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075 89.076zM8.819 322.784c8.83 32.758 23.993 62.913 44.101 89.075l89.074-89.075zM411.858 52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177zM100.142 459.079c26.163 20.109 56.318 35.272 89.076 44.102V370.005zM189.217 8.819c-32.758 8.83-62.913 23.993-89.075 44.101l89.075 89.075zM322.783 503.181c32.758-8.83 62.913-23.993 89.075-44.101l-89.075-89.075zM370.005 322.784l89.075 89.076c20.108-26.162 35.272-56.318 44.101-89.076z"
+                                    fill="#0052b4" opacity="1" data-original="#0052b4"></path>
+                            </g>
+                            <g fill="#d80027">
+                                <path
+                                    d="M509.833 222.609H289.392V2.167A258.556 258.556 0 0 0 256 0c-11.319 0-22.461.744-33.391 2.167v220.441H2.167A258.556 258.556 0 0 0 0 256c0 11.319.744 22.461 2.167 33.391h220.441v220.442a258.35 258.35 0 0 0 66.783 0V289.392h220.442A258.533 258.533 0 0 0 512 256c0-11.317-.744-22.461-2.167-33.391z"
+                                    fill="#d80027" opacity="1" data-original="#d80027"></path>
+                                <path
+                                    d="M322.783 322.784 437.019 437.02a256.636 256.636 0 0 0 15.048-16.435l-97.802-97.802h-31.482zM189.217 322.784h-.002L74.98 437.019a256.636 256.636 0 0 0 16.435 15.048l97.802-97.804zM189.217 189.219v-.002L74.981 74.98a256.636 256.636 0 0 0-15.048 16.435l97.803 97.803h31.481zM322.783 189.219 437.02 74.981a256.328 256.328 0 0 0-16.435-15.047l-97.802 97.803z"
+                                    fill="#d80027" opacity="1" data-original="#d80027"></path>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <section id="nav-vertical">
+            <div class="nav-list-group">
+                <div class="nav-list active">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M426 495.983H86c-25.364 0-46-20.635-46-46v-242.02c0-8.836 7.163-16 16-16s16 7.164 16 16v242.02c0 7.72 6.28 14 14 14h340c7.72 0 14-6.28 14-14v-242.02c0-8.836 7.163-16 16-16s16 7.164 16 16v242.02c0 25.364-20.635 46-46 46z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                            <path
+                                d="M496 263.958a15.945 15.945 0 0 1-11.313-4.687L285.698 60.284c-16.375-16.376-43.02-16.376-59.396 0L27.314 259.272c-6.248 6.249-16.379 6.249-22.627 0-6.249-6.248-6.249-16.379 0-22.627L203.675 37.656c28.852-28.852 75.799-28.852 104.65 0l198.988 198.988c6.249 6.249 6.249 16.379 0 22.627A15.943 15.943 0 0 1 496 263.958zM320 495.983H192c-8.837 0-16-7.164-16-16v-142c0-27.57 22.43-50 50-50h60c27.57 0 50 22.43 50 50v142c0 8.836-7.163 16-16 16zm-112-32h96v-126c0-9.925-8.075-18-18-18h-60c-9.925 0-18 8.075-18 18z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                    <p>Trang Chủ</p>
+                </div>
+                <a href="photos.html" class="nav-list">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 12 12"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M10.5 1.125h-9C.742 1.125.125 1.742.125 2.5v7c0 .758.617 1.375 1.375 1.375h9c.758 0 1.375-.617 1.375-1.375v-7c0-.758-.617-1.375-1.375-1.375zm-9 .75h9c.345 0 .625.28.625.625v3.594l-2.36-2.36a.376.376 0 0 0-.53 0L4 7.97 2.766 6.735a.376.376 0 0 0-.532 0L.875 8.095V2.5c0-.345.28-.625.625-.625zm9 8.25h-9A.626.626 0 0 1 .875 9.5v-.344L2.5 7.53l1.234 1.235a.376.376 0 0 0 .532 0L8.5 4.53l2.625 2.626V9.5c0 .345-.28.625-.625.625z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                            <path
+                                d="M3.5 5.875c.758 0 1.375-.617 1.375-1.375S4.258 3.125 3.5 3.125 2.125 3.742 2.125 4.5 2.742 5.875 3.5 5.875zm0-2a.626.626 0 1 1-.001 1.251.626.626 0 0 1 .001-1.251z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                    <p>Hình Ảnh</p>
+                </a>
+                <a href="collection.html" class="nav-list">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 512.001 512.001"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M448.916 118.259h-162.05c-6.578 0-13.003-2.701-17.44-7.292l-50.563-53.264c-12.154-12.115-28.783-18.443-45.625-18.346H63.084C28.301 39.356 0 67.657 0 102.439v307.123c0 34.783 28.301 63.084 63.084 63.084h386.122c34.764-.154 62.949-28.59 62.794-63.277V181.342c0-34.783-28.301-63.083-63.084-63.083zm24.501 291.188c.058 13.504-10.88 24.558-24.307 24.616H63.084c-13.504 0-24.5-10.996-24.5-24.5V102.439c0-13.504 10.996-24.5 24.5-24.52h111.293c6.443 0 12.694 2.566 16.899 6.733l50.293 53.013c11.806 12.192 28.32 19.176 45.297 19.176h162.05c13.504 0 24.5 10.996 24.5 24.5v228.106z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                    <p>Bộ Sưu Tập</p>
+                </a>
+            </div>
+        </section>
+    </header>
+    <section class="banner">
+        <div class="swiper mySwiperBig">
+            <div class="text-background">
+                <div class="text-group">
+                    <div class="text">
+                        <h1>Nơi đây chỉ có khoảnh khắc ở lại</h1>
+                        <p>Cuốn album số của gia đình, nơi lưu giữ những khung hình hạnh phúc và ghi dấu những khoảnh
+                            khắc mới mỗi ngày. Đây là dự án cá nhân được phát triển bởi Lý Nguyễn Thảo Linh, với mong
+                            muốn tạo ra một không gian chung để lưu lại và dễ dàng xem lại những kỷ niệm của cả nhà.</p>
+                        <p>Cuốn album số của gia đình, nơi lưu giữ hạnh phúc và ghi dấu khoảnh khắc mỗi ngày. Dự án do
+                            Lý Nguyễn Thảo Linh phát triển nhằm giúp cả nhà dễ dàng lưu trữ, xem lại kỷ niệm.</p>
+                    </div>
+                    <a href="photos.html">
+                        <button>
+                            <p>Xem tất cả</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0"
+                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
+                                <g>
+                                    <path
+                                        d="m506.134 241.843-.018-.019-104.504-104c-7.829-7.791-20.492-7.762-28.285.068-7.792 7.829-7.762 20.492.067 28.284L443.558 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h423.557l-70.162 69.824c-7.829 7.792-7.859 20.455-.067 28.284 7.793 7.831 20.457 7.858 28.285.068l104.504-104 .018-.019c7.833-7.818 7.808-20.522-.001-28.314z"
+                                        fill="#000000" opacity="1" data-original="#000000"></path>
+                                </g>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-wrapper">
+                <div class="center-flex swiper-slide"><img src="pics/260523/260523_img0116.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/_MG_2481.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/260524_img0065.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/_MG_2429.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/260524_img0077.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/260524_img0092.jpg" alt=""
+                        class="crop-bottom"></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/_MG_2211.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260523/260523_img0103.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260522/260522_img0123.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260522/260522_img0125.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/180629/pic (6).JPG" alt=""></div>
+            </div>
+        </div>
+        <div thumbsSlider="" class="swiper mySwiperSmall">
+            <div class="swiper-wrapper">
+                <div class="center-flex swiper-slide"><img src="pics/260523/260523_img0116.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/_MG_2481.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/260524_img0065.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/_MG_2429.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/260524_img0077.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/260524_img0092.jpg" alt=""
+                        class="crop-bottom"></div>
+                <div class="center-flex swiper-slide"><img src="pics/260524/_MG_2211.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260523/260523_img0103.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260522/260522_img0123.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/260522/260522_img0125.jpg" alt=""></div>
+                <div class="center-flex swiper-slide"><img src="pics/180629/pic (6).JPG" alt=""></div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+
+    // swiper banner ---------------------------------------------
+    var swiper = new Swiper(".mySwiperSmall", {
+        loop: true,
+        freeMode: true,
+        watchSlidesProgress: true,
+
+        mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+        },
+
+        breakpoints: {
+
+            // Desktop
+            1440: {
+                slidesPerView: 6,
+                spaceBetween: 20,
+            },
+
+            // Tablet
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 12,
+            },
+
+            // Mobile
+            360: {
+                slidesPerView: 3,
+                spaceBetween: 12,
+            },
+        }
+    });
+    var swiper2 = new Swiper(".mySwiperBig", {
+        loop: true,
+        spaceBetween: 10,
+
+        mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+        },
+
+        effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
+        speed: 1500,
+        autoplay: {
+            delay: 3000,                // Chuyển sau mỗi 3 giây
+            disableOnInteraction: false // Người dùng vuốt xong vẫn tiếp tục autoplay
+        },
+
+        thumbs: {
+            swiper: swiper,
+        },
+
+        on: {
+            slideChange: function () {
+
+                const lastVisible =
+                    swiper.activeIndex + swiper.params.slidesPerView - 1;
+
+                if (this.realIndex >= lastVisible) {
+                    swiper.slideToLoop(this.realIndex - 4, 500);
+                }
+            }
+        }
+    });
+</script>
+
+
+
+</html>

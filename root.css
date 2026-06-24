@@ -1,0 +1,533 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: var(--font1);
+}
+
+:root {
+    --mainColor1: #50A5A6;
+    --mainColor2: #FDF775;
+    --subColor1: #117B7A;
+    --subColor2: #FDE529;
+    --subColor3: #888;
+    --subColor4: #AAA;
+    --subColor5: #DDD;
+
+    --font1: 'Inter', sans-serif;
+    --font2: 'Fraunces', serif;
+    --fontSizeBody: 16px;
+    --fontSizeBodysSmall: 14px;
+    --fontSizeH1: 32px;
+    --fontSizeH1small: 24px;
+
+    --fontRegular: 400;
+    --fontMedium: 500;
+    --fontBold: 700;
+    --fontSemiBold: 600;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    width: fit-content;
+}
+
+p {
+    font-size: var(--fontSizeBody);
+    font-weight: var(--fontRegular);
+}
+
+h1 {
+    font-family: var(--font2);
+    font-style: italic;
+    font-weight: var(--fontSemiBold);
+    font-size: 60px;
+}
+
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+/* header -------------------------------------------------- */
+header {
+    position: relative;
+    z-index: 1000;
+}
+
+#nav-vertical {
+    width: fit-content;
+    height: 100vh;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+}
+
+#nav-vertical .nav-list-group {
+    width: 60px;
+    background-color: var(--mainColor1);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.16);
+
+    display: flex;
+    flex-direction: column;
+}
+
+#nav-vertical .nav-list svg {
+    width: 28px;
+    height: 28px;
+}
+
+#nav-vertical .nav-list svg path {
+    fill: white;
+}
+
+#nav-vertical .nav-list p {
+    font-size: var(--fontSizeBody);
+    font-weight: var(--fontMedium);
+    color: white;
+    display: none;
+}
+
+#nav-vertical .nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+    height: 100px;
+
+    cursor: pointer;
+}
+
+#nav-vertical .nav-list-group:hover p {
+    display: flex;
+}
+
+#nav-vertical .nav-list-group:hover {
+    width: 140px;
+}
+
+#nav-vertical .nav-list:hover {
+    background-color: var(--subColor1);
+}
+
+#nav-vertical .nav-list.active {
+    background-color: var(--mainColor2);
+    width: 80px;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+    cursor: auto;
+}
+
+#nav-vertical .nav-list.active svg path,
+#nav-vertical .nav-list.active p {
+    fill: var(--mainColor1);
+    color: var(--mainColor1);
+}
+
+#nav-vertical .nav-list-group:hover .nav-list.active {
+    background-color: var(--mainColor2);
+    width: 160px;
+}
+
+#nav-horizontal {
+    background: linear-gradient(to bottom,
+            black 0%,
+            transparent 100%);
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 80px;
+
+    position: fixed;
+}
+
+#nav-horizontal.scrolled {
+    background: black;
+}
+
+
+/* avatar -------------------------------------------------- */
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    margin: 20px;
+}
+
+.avatar-frame a {
+    width: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+/* language display -------------------------------------------------- */
+.language-display svg {
+    width: 24px;
+    height: 24px;
+}
+
+.language-display {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.language-display .language {
+    display: flex;
+    gap: 8px;
+}
+
+.language {
+    cursor: pointer;
+}
+
+.language-display p {
+    color: white;
+}
+
+.language-display .language p {
+    width: 28px;
+    text-align: center;
+    align-self: center;
+}
+
+.language.active p {
+    font-weight: var(--fontBold);
+}
+
+/* crop ảnh -------------------------------------------------- */
+
+.crop-bottom {
+    object-position: center bottom;
+}
+
+/* button -------------------------------------------------- */
+
+button {
+    width: fit-content;
+    padding: 12px 24px;
+}
+
+button p {
+    font-weight: var(--fontSemiBold);
+}
+
+button svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* nhóm ảnh -------------------------------------------------- */
+
+/* pic grid */
+
+.pics-group .pics img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+}
+
+.pics-group .pics img:hover {
+    box-shadow:
+        0 0 0 4px var(--mainColor2),
+        0 0 0 8px var(--mainColor1);
+    transform: scale(1.5);
+}
+
+.pics-group .pics {
+    width: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+}
+
+.pics-group h3 {
+    font-weight: var(--fontRegular);
+    font-size: var(--fontSizeBody);
+}
+
+.pics-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+
+    padding: 80px 8vw 80px 12vw;
+}
+
+/* pic info */
+
+.pic-info {
+    width: 50%;
+    background-color: white;
+    flex-shrink: 0;
+
+    padding: 28px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}
+
+.pic-info img {
+    background-color: black;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+}
+
+.pics-group .text {
+    padding-bottom: 16px;
+    border-bottom: solid 1px var(--subColor5);
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.pics-group .text p:first-child {
+    color: var(--subColor4);
+}
+
+.pics-group .info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* chọn ảnh decor */
+
+.pics-group .pics img {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.pics-group .pics img.active {
+    box-shadow:
+        0 0 0 4px var(--mainColor2),
+        0 0 0 8px var(--mainColor1);
+}
+
+/* turn off pic preview */
+
+.pics-group .cancel {
+    background-color: var(--mainColor1);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 100px;
+    margin-left: auto;
+
+    padding: 8px;
+}
+
+.pics-group .cancel svg {
+    width: 24px;
+    height: 24px;
+}
+
+.pics-group .cancel svg path {
+    fill: white;
+}
+
+.pic-info.hidden {
+    display: none;
+    transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+}
+
+.pics-group .cancel:hover {
+    background-color: var(--subColor1);
+}
+
+/* nút tải về */
+
+.button-grp svg {
+    width: 24px;
+    height: 24px;
+}
+
+.button-grp svg path {
+    fill: var(--mainColor1);
+}
+
+.button-grp button {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-btn {
+    background-color: var(--mainColor2);
+    border-radius: 8px;
+
+    cursor: pointer;
+    color: var(--mainColor1);
+}
+
+.download-btn:hover {
+    background-color: var(--subColor2);
+}
+
+.btn-left {
+    display: flex;
+    gap: 20px;
+}
+
+/* nút view full */
+
+.viewfull-btn {
+    border: solid 1px var(--mainColor1);
+    border-radius: 8px;
+    color: var(--mainColor1);
+}
+
+.viewfull-btn:hover {
+    background-color: var(--subColor1);
+    color: white;
+}
+
+.viewfull-btn:hover svg path {
+    fill: white;
+}
+
+.button-grp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* view full hình ảnh */
+
+.fullscreen-popup {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+}
+
+.fullscreen-popup.active {
+    display: flex;
+}
+
+.popup-header {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.popup-header button {
+    color: white;
+}
+
+.fullscreenSwiper {
+    width: 100%;
+    flex: 1;
+}
+
+.fullscreenSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.thumbSwiper {
+    width: 100%;
+    height: 110px;
+    padding: 10px 40px 20px;
+}
+
+.thumbSwiper .swiper-wrapper {
+    transition-timing-function: linear;
+    cursor: grab;
+}
+
+.thumbSwiper .swiper-wrapper:active {
+    cursor: grabbing;
+}
+
+.thumbSwiper .swiper-slide {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.thumbSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    opacity: .45;
+    cursor: pointer;
+}
+
+.thumbSwiper .swiper-slide-thumb-active img {
+    opacity: 1;
+}
+
+/* nút mũi tên Swiper */
+
+.swiper-button-prev,
+.swiper-button-next {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .45);
+    backdrop-filter: blur(6px);
+    color: white;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 40px;
+}

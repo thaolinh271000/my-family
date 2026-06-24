@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="root.js" defer></script>
+    <link rel="stylesheet" href="root.css">
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner {
+            height: 60vh;
+            position: relative;
+        }
+
+        .banner .text {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            bottom: 0;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    transparent 50%,
+                    black 100%);
+
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 32vw 80px 12vw;
+        }
+
+        .banner .text h1 {
+            color: white;
+        }
+
+        .banner .text p {
+            color: white;
+        }
+
+        /* desktop: 1024px -> 1439px -------------------------------------------------- */
+        @media screen and (max-width: 1439px) {}
+
+        /* tablet: 768px -> 1023px  -------------------------------------------------- */
+        @media (hover:none) and (max-width: 1023px) {}
+
+        /* mobile: 360px -> 767px -------------------------------------------------- */
+        @media screen and (max-width: 767px) {
+            .pics-group {
+                padding: 8vw 8vw 100px 8vw ;
+                gap: 40px;
+            }
+            .banner .text h1 {
+                font-size: 32px;
+            }
+
+            .banner .text {
+                padding: 0 8vw 40px 8vw;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="root_desktop.css" media="screen and (max-width: 1439px)">
+    <link rel="stylesheet" href="root_tablet.css" media="screen and (max-width: 1023px)">
+    <link rel="stylesheet" href="root_mobile.css" media="screen and (max-width: 767px)">
+
+</head>
+
+<body>
+    <header>
+        <section id="nav-horizontal">
+            <div class="avatar-frame">
+                <a href="index.html"><img src="pics/me.jpg" alt="" class="avatar"></a>
+            </div>
+            <div class="language-display">
+                <div class="language active">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 36 36"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <g fill-rule="evenodd" clip-rule="evenodd">
+                                <path fill="#da251d"
+                                    d="M18 0c9.94 0 18 8.06 18 18s-8.06 18-18 18S0 27.94 0 18 8.06 0 18 0z" opacity="1"
+                                    data-original="#da251d"></path>
+                                <path fill="#ffff00"
+                                    d="m10 15.75 4.944 3.592-1.888 5.812L18 21.563l4.944 3.592-1.89-5.812L26 15.75h-6.132L18 10l-1.868 5.75z"
+                                    opacity="1" data-original="#ffff00"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <p>VN</p>
+                </div>
+                <p>|</p>
+                <div class="language">
+                    <p>EN</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <circle cx="256" cy="256" r="256" fill="#f0f0f0" opacity="1" data-original="#f0f0f0">
+                            </circle>
+                            <g fill="#0052b4">
+                                <path
+                                    d="M52.92 100.142c-20.109 26.163-35.272 56.318-44.101 89.077h133.178zM503.181 189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075 89.076zM8.819 322.784c8.83 32.758 23.993 62.913 44.101 89.075l89.074-89.075zM411.858 52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177zM100.142 459.079c26.163 20.109 56.318 35.272 89.076 44.102V370.005zM189.217 8.819c-32.758 8.83-62.913 23.993-89.075 44.101l89.075 89.075zM322.783 503.181c32.758-8.83 62.913-23.993 89.075-44.101l-89.075-89.075zM370.005 322.784l89.075 89.076c20.108-26.162 35.272-56.318 44.101-89.076z"
+                                    fill="#0052b4" opacity="1" data-original="#0052b4"></path>
+                            </g>
+                            <g fill="#d80027">
+                                <path
+                                    d="M509.833 222.609H289.392V2.167A258.556 258.556 0 0 0 256 0c-11.319 0-22.461.744-33.391 2.167v220.441H2.167A258.556 258.556 0 0 0 0 256c0 11.319.744 22.461 2.167 33.391h220.441v220.442a258.35 258.35 0 0 0 66.783 0V289.392h220.442A258.533 258.533 0 0 0 512 256c0-11.317-.744-22.461-2.167-33.391z"
+                                    fill="#d80027" opacity="1" data-original="#d80027"></path>
+                                <path
+                                    d="M322.783 322.784 437.019 437.02a256.636 256.636 0 0 0 15.048-16.435l-97.802-97.802h-31.482zM189.217 322.784h-.002L74.98 437.019a256.636 256.636 0 0 0 16.435 15.048l97.802-97.804zM189.217 189.219v-.002L74.981 74.98a256.636 256.636 0 0 0-15.048 16.435l97.803 97.803h31.481zM322.783 189.219 437.02 74.981a256.328 256.328 0 0 0-16.435-15.047l-97.802 97.803z"
+                                    fill="#d80027" opacity="1" data-original="#d80027"></path>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <section id="nav-vertical">
+            <div class="nav-list-group">
+                <a href="index.html" class="nav-list">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M426 495.983H86c-25.364 0-46-20.635-46-46v-242.02c0-8.836 7.163-16 16-16s16 7.164 16 16v242.02c0 7.72 6.28 14 14 14h340c7.72 0 14-6.28 14-14v-242.02c0-8.836 7.163-16 16-16s16 7.164 16 16v242.02c0 25.364-20.635 46-46 46z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                            <path
+                                d="M496 263.958a15.945 15.945 0 0 1-11.313-4.687L285.698 60.284c-16.375-16.376-43.02-16.376-59.396 0L27.314 259.272c-6.248 6.249-16.379 6.249-22.627 0-6.249-6.248-6.249-16.379 0-22.627L203.675 37.656c28.852-28.852 75.799-28.852 104.65 0l198.988 198.988c6.249 6.249 6.249 16.379 0 22.627A15.943 15.943 0 0 1 496 263.958zM320 495.983H192c-8.837 0-16-7.164-16-16v-142c0-27.57 22.43-50 50-50h60c27.57 0 50 22.43 50 50v142c0 8.836-7.163 16-16 16zm-112-32h96v-126c0-9.925-8.075-18-18-18h-60c-9.925 0-18 8.075-18 18z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                    <p>Trang Chủ</p>
+                </a>
+                <a href="photos.html" class="nav-list">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 12 12"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M10.5 1.125h-9C.742 1.125.125 1.742.125 2.5v7c0 .758.617 1.375 1.375 1.375h9c.758 0 1.375-.617 1.375-1.375v-7c0-.758-.617-1.375-1.375-1.375zm-9 .75h9c.345 0 .625.28.625.625v3.594l-2.36-2.36a.376.376 0 0 0-.53 0L4 7.97 2.766 6.735a.376.376 0 0 0-.532 0L.875 8.095V2.5c0-.345.28-.625.625-.625zm9 8.25h-9A.626.626 0 0 1 .875 9.5v-.344L2.5 7.53l1.234 1.235a.376.376 0 0 0 .532 0L8.5 4.53l2.625 2.626V9.5c0 .345-.28.625-.625.625z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                            <path
+                                d="M3.5 5.875c.758 0 1.375-.617 1.375-1.375S4.258 3.125 3.5 3.125 2.125 3.742 2.125 4.5 2.742 5.875 3.5 5.875zm0-2a.626.626 0 1 1-.001 1.251.626.626 0 0 1 .001-1.251z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                    <p>Hình Ảnh</p>
+                </a>
+                <div class="nav-list active">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 512.001 512.001"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M448.916 118.259h-162.05c-6.578 0-13.003-2.701-17.44-7.292l-50.563-53.264c-12.154-12.115-28.783-18.443-45.625-18.346H63.084C28.301 39.356 0 67.657 0 102.439v307.123c0 34.783 28.301 63.084 63.084 63.084h386.122c34.764-.154 62.949-28.59 62.794-63.277V181.342c0-34.783-28.301-63.083-63.084-63.083zm24.501 291.188c.058 13.504-10.88 24.558-24.307 24.616H63.084c-13.504 0-24.5-10.996-24.5-24.5V102.439c0-13.504 10.996-24.5 24.5-24.52h111.293c6.443 0 12.694 2.566 16.899 6.733l50.293 53.013c11.806 12.192 28.32 19.176 45.297 19.176h162.05c13.504 0 24.5 10.996 24.5 24.5v228.106z"
+                                fill="#000000" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                    <p>Bộ Sưu Tập</p>
+                </div>
+            </div>
+        </section>
+    </header>
+    <section class="banner">
+        <div class="text">
+            <h1>Lễ thăm hỏi của bé Minh</h1>
+            <p>61 hình</p>
+        </div>
+        <img src="pics/260524/_MG_2264.jpg" alt="">
+    </section>
+    <section class="pics-group">
+        <div class="pic-info hidden">
+            <div class="button-grp">
+                <div class="btn-left">
+                    <a id="downloadLink" href="#">
+                        <button class="download-btn">
+                            <p>Tải về</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0"
+                                viewBox="0 0 25 24" style="enable-background:new 0 0 512 512" xml:space="preserve">
+                                <g>
+                                    <g fill="#000" fill-rule="evenodd" clip-rule="evenodd">
+                                        <path
+                                            d="M4.637 16a1 1 0 0 1 1 1v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a1 1 0 1 1 2 0v2a3 3 0 0 1-3 3h-12a3 3 0 0 1-3-3v-2a1 1 0 0 1 1-1z"
+                                            fill="#000000" opacity="1" data-original="#000000"></path>
+                                        <path
+                                            d="M6.93 10.293a1 1 0 0 1 1.414 0l4.293 4.293 4.293-4.293a1 1 0 1 1 1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 0-1.414z"
+                                            fill="#000000" opacity="1" data-original="#000000"></path>
+                                        <path d="M12.637 3a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1z"
+                                            fill="#000000" opacity="1" data-original="#000000"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </button>
+                    </a>
+                    <button class="viewfull-btn">
+                        <p>Xem toàn màn hình</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="512" height="512" x="0" y="0" viewBox="0 0 128 128"
+                            style="enable-background:new 0 0 512 512" xml:space="preserve" class="hovered-paths">
+                            <g>
+                                <path
+                                    d="m122.732 10.606-.002 26.701a5.337 5.337 0 1 1-10.675-.001v-13.8L81.036 54.552a5.322 5.322 0 0 1-3.779 1.564 5.337 5.337 0 0 1-3.776-9.111l31.029-31.059H90.713a5.34 5.34 0 0 1 0-10.68h26.679c1.417 0 2.774.563 3.776 1.566a5.338 5.338 0 0 1 1.564 3.774zm-5.339 74.746a5.34 5.34 0 0 0-5.338 5.341v13.8L81.556 74.254c-2.087-2.085-5.61-2.087-7.695-.002-2.086 2.082-2.158 5.464-.075 7.548l30.191 30.254H90.154a5.342 5.342 0 0 0-5.343 5.339 5.335 5.335 0 0 0 5.335 5.338l26.675.003c1.418 0 3.062-.563 4.061-1.564 1.001-1.001 1.851-2.359 1.851-3.774V90.692a5.343 5.343 0 0 0-5.34-5.34zM46.442 74.019l-30.496 30.476V90.692c0-2.949-2.343-5.334-5.291-5.334h.022a5.327 5.327 0 0 0-5.328 5.334l.002 26.7a5.342 5.342 0 0 0 5.345 5.34h26.68a5.34 5.34 0 0 0 0-10.68H23.583l30.458-30.486c2.087-2.084 2.06-5.469-.025-7.551s-5.488-2.08-7.574.004zM23.489 16.427h13.795a5.34 5.34 0 0 0 0-10.677l-26.677-.002h-.001A5.34 5.34 0 0 0 6.83 7.309a5.342 5.342 0 0 0-1.563 3.777l.003 26.702a5.34 5.34 0 0 0 5.338 5.339 5.34 5.34 0 0 0 5.338-5.339V23.986l30.776 30.801a5.324 5.324 0 0 0 3.778 1.566 5.34 5.34 0 0 0 3.776-9.116z"
+                                    fill="#000000" opacity="1" data-original="#000000" class="hovered-path"></path>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+                <button class="cancel center-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="512" height="512" x="0" y="0" viewBox="0 0 24 24"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve">
+                        <g>
+                            <path fill="#000000" fill-rule="evenodd"
+                                d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
+                                clip-rule="evenodd" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+
+            <img src="pics/260524/260524_img0062.jpg" alt="" class="preview-img">
+            <div class="info">
+                <div class="text date-row">
+                    <p>Ngày chụp</p>
+                    <p id="photoDate"></p>
+                </div>
+                <div class="text author-row">
+                    <p>Chụp bởi</p>
+                    <p id="photoAuthor"></p>
+                </div>
+                <div class="text event-row">
+                    <p>Sự kiện</p>
+                    <p id="photoEvent"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pics">
+            <img src="pics/260524/260524_img0063.jpg" alt="">
+            <img src="pics/260524/260524_img0064.jpg" alt="">
+            <img src="pics/260524/260524_img0066.jpg" alt="">
+            <img src="pics/260524/260524_img0067.jpg" alt="">
+            <img src="pics/260524/260524_img0068.jpg" alt="">
+            <img src="pics/260524/260524_img0070.jpg" alt="">
+            <img src="pics/260524/260524_img0072.jpg" alt="">
+            <img src="pics/260524/260524_img0073.jpg" alt="">
+            <img src="pics/260524/260524_img0075.jpg" alt="">
+            <img src="pics/260524/260524_img0077.jpg" alt="">
+
+            <img src="pics/260524/260524_img0079.jpg" alt="">
+            <img src="pics/260524/260524_img0083.jpg" alt="">
+            <img src="pics/260524/260524_img0084.jpg" alt="">
+            <img src="pics/260524/260524_img0085.jpg" alt="">
+            <img src="pics/260524/260524_img0086.jpg" alt="">
+            <img src="pics/260524/260524_img0087.jpg" alt="">
+            <img src="pics/260524/260524_img0088.jpg" alt="">
+            <img src="pics/260524/260524_img0089.jpg" alt="">
+            <img src="pics/260524/260524_img0090.jpg" alt="">
+            <img src="pics/260524/260524_img0091.jpg" alt="">
+
+            <img src="pics/260524/_MG_2206.jpg" alt="">
+            <img src="pics/260524/_MG_2211.jpg" alt="">
+            <img src="pics/260524/_MG_2214.jpg" alt="">
+            <img src="pics/260524/_MG_2217.jpg" alt="">
+            <img src="pics/260524/_MG_2224.jpg" alt="">
+            <img src="pics/260524/_MG_2227.jpg" alt="">
+            <img src="pics/260524/_MG_2229.jpg" alt="">
+            <img src="pics/260524/_MG_2237.jpg" alt="">
+            <img src="pics/260524/_MG_2241.jpg" alt="">
+            <img src="pics/260524/_MG_2243.jpg" alt="">
+
+            <img src="pics/260524/_MG_2244.jpg" alt="">
+            <img src="pics/260524/_MG_2250.jpg" alt="">
+            <img src="pics/260524/_MG_2251.jpg" alt="">
+            <img src="pics/260524/_MG_2264.jpg" alt="">
+            <img src="pics/260524/_MG_2279.jpg" alt="">
+            <img src="pics/260524/_MG_2286.jpg" alt="">
+            <img src="pics/260524/_MG_2288.jpg" alt="">
+            <img src="pics/260524/_MG_2289.jpg" alt="">
+            <img src="pics/260524/_MG_2297.jpg" alt="">
+            <img src="pics/260524/_MG_2302.jpg" alt="">
+
+            <img src="pics/260524/_MG_2311.jpg" alt="">
+            <img src="pics/260524/_MG_2321.jpg" alt="">
+            <img src="pics/260524/_MG_2326.jpg" alt="">
+            <img src="pics/260524/_MG_2334.jpg" alt="">
+            <img src="pics/260524/_MG_2346.jpg" alt="">
+            <img src="pics/260524/_MG_2349.jpg" alt="">
+            <img src="pics/260524/_MG_2352.jpg" alt="">
+            <img src="pics/260524/_MG_2356.jpg" alt="">
+            <img src="pics/260524/_MG_2368.jpg" alt="">
+            <img src="pics/260524/_MG_2376.jpg" alt="">
+
+            <img src="pics/260524/_MG_2381.jpg" alt="">
+            <img src="pics/260524/_MG_2388.jpg" alt="">
+            <img src="pics/260524/_MG_2393.jpg" alt="">
+            <img src="pics/260524/_MG_2395.jpg" alt="">
+            <img src="pics/260524/_MG_2396.jpg" alt="">
+            <img src="pics/260524/_MG_2398.jpg" alt="">
+            <img src="pics/260524/_MG_2406.jpg" alt="">
+            <img src="pics/260524/_MG_2412.jpg" alt="">
+            <img src="pics/260524/_MG_2429.jpg" alt="">
+            <img src="pics/260524/_MG_2446.jpg" alt="">
+
+            <img src="pics/260524/_MG_2452.jpg" alt="">
+        </div>
+    </section>
+    <section class="fullscreen-popup">
+        <div class="popup-header">
+            <button class="back-btn">
+                ← Quay lại
+            </button>
+            <a id="popupDownload" download>
+                <button>Tải về</button>
+            </a>
+        </div>
+        <div class="swiper fullscreenSwiper">
+            <div class="swiper-wrapper"></div>
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper thumbSwiper">
+            <div class="swiper-wrapper"></div>
+        </div>
+    </section>
+</body>
+
+<script>
+
+    const albums = [
+        {
+            date: "24/05/2026",
+            author: "Bé Mi",
+            event: "Lễ thăm hỏi của bé Minh",
+
+            photos: [
+                "pics/260524/_MG_2206.jpg",
+                "pics/260524/_MG_2211.jpg",
+                "pics/260524/_MG_2214.jpg",
+                "pics/260524/_MG_2217.jpg",
+                "pics/260524/_MG_2224.jpg",
+                "pics/260524/_MG_2227.jpg",
+                "pics/260524/_MG_2229.jpg",
+                "pics/260524/_MG_2237.jpg",
+                "pics/260524/_MG_2241.jpg",
+                "pics/260524/_MG_2243.jpg",
+
+                "pics/260524/_MG_2244.jpg",
+                "pics/260524/_MG_2250.jpg",
+                "pics/260524/_MG_2251.jpg",
+                "pics/260524/_MG_2264.jpg",
+                "pics/260524/_MG_2279.jpg",
+                "pics/260524/_MG_2286.jpg",
+                "pics/260524/_MG_2288.jpg",
+                "pics/260524/_MG_2289.jpg",
+                "pics/260524/_MG_2297.jpg",
+                "pics/260524/_MG_2302.jpg",
+
+                "pics/260524/_MG_2311.jpg",
+                "pics/260524/_MG_2321.jpg",
+                "pics/260524/_MG_2326.jpg",
+                "pics/260524/_MG_2334.jpg",
+                "pics/260524/_MG_2346.jpg",
+                "pics/260524/_MG_2349.jpg",
+                "pics/260524/_MG_2352.jpg",
+                "pics/260524/_MG_2356.jpg",
+                "pics/260524/_MG_2368.jpg",
+                "pics/260524/_MG_2376.jpg",
+
+                "pics/260524/_MG_2381.jpg",
+                "pics/260524/_MG_2388.jpg",
+                "pics/260524/_MG_2393.jpg",
+                "pics/260524/_MG_2395.jpg",
+                "pics/260524/_MG_2396.jpg",
+                "pics/260524/_MG_2398.jpg",
+                "pics/260524/_MG_2406.jpg",
+                "pics/260524/_MG_2412.jpg",
+                "pics/260524/_MG_2429.jpg",
+                "pics/260524/_MG_2446.jpg",
+
+                "pics/260524/_MG_2452.jpg",
+                "pics/260524/260524_img0063.jpg",
+                "pics/260524/260524_img0064.jpg",
+                "pics/260524/260524_img0066.jpg",
+                "pics/260524/260524_img0067.jpg",
+                "pics/260524/260524_img0068.jpg",
+                "pics/260524/260524_img0070.jpg",
+                "pics/260524/260524_img0072.jpg",
+                "pics/260524/260524_img0073.jpg",
+                "pics/260524/260524_img0075.jpg",
+
+                "pics/260524/260524_img0077.jpg",
+                "pics/260524/260524_img0079.jpg",
+                "pics/260524/260524_img0083.jpg",
+                "pics/260524/260524_img0084.jpg",
+                "pics/260524/260524_img0085.jpg",
+                "pics/260524/260524_img0086.jpg",
+                "pics/260524/260524_img0087.jpg",
+                "pics/260524/260524_img0088.jpg",
+                "pics/260524/260524_img0089.jpg",
+                "pics/260524/260524_img0090.jpg",
+
+                "pics/260524/260524_img0091.jpg",
+            ]
+        },
+
+        {
+            date: "24/05/2026",
+            author: "Patricia",
+            event: "Tham quan Sài Gòn",
+
+            photos: [
+                // "pics/260524/260524_img0062.jpg",
+                // "pics/260524/260524_img0092.jpg",
+            ]
+        }
+    ];
+
+
+
+
+
+
+
+</script>
+
+</html>
