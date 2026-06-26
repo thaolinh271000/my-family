@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <link rel="stylesheet" href="root.css">
+
+  <title>Fullscreen</title>
+</head>
+
+<body>
+
+  <div class="swiper fullscreenSwiper">
+    <div class="swiper-wrapper"></div>
+  </div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <script>
+    /* ================================
+       1. DATA (copy từ photos.html)
+    ================================ */
+
+    const albums = [
+      {
+        photos: [
+          "pics/260524/260524_img0063.jpg",
+          "pics/260524/260524_img0064.jpg",
+          "pics/260524/260524_img0065.jpg",
+          "pics/260524/260524_img0066.jpg",
+          "pics/260524/260524_img0067.jpg"
+        ]
+      }
+    ];
+
+    /* ================================
+       2. GET INDEX FROM URL
+    ================================ */
+
+    const params = new URLSearchParams(window.location.search);
+    const startIndex = parseInt(params.get("index") || "0");
+
+    /* ================================
+       3. FLATTEN IMAGES
+    ================================ */
+
+    const images = albums.flatMap(a => a.photos);
+
+    /* ================================
+       4. RENDER SWIPER
+    ================================ */
+
+    const wrapper = document.querySelector(".fullscreenSwiper .swiper-wrapper");
+
+    images.forEach(src => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide";
+
+      slide.innerHTML = `<img src="${src}">`;
+      wrapper.appendChild(slide);
+    });
+
+    /* ================================
+       5. INIT SWIPER (SAFE MODE)
+    ================================ */
+
+    const swiper = new Swiper(".fullscreenSwiper", {
+      loop: false,
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+
+      keyboard: {
+        enabled: true
+      }
+    });
+
+    /* ================================
+       6. SET START INDEX
+    ================================ */
+
+    swiper.slideTo(startIndex, 0);
+
+  </script>
+
+</body>
+
+</html>
