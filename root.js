@@ -175,7 +175,7 @@ const thumbSwiper = new Swiper(".thumbSwiper", {
 
 const fullSwiper = new Swiper(".fullscreenSwiper", {
 
-    loop: false,
+    loop: true,
 
     loopAdditionalSlides: thumbnails.length,
 
