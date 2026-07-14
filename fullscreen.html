@@ -103,101 +103,139 @@
 </body>
 
 <script>
-  const mainWrapper = document.querySelector(".fullscreenSwiper .swiper-wrapper");
-  const thumbWrapper = document.querySelector(".thumbSwiper .swiper-wrapper");
 
   const photos = JSON.parse(sessionStorage.getItem("photos")) || [];
-  let photoIndex = Number(sessionStorage.getItem("photoIndex")) || 0;
+  let currentIndex = Number(sessionStorage.getItem("photoIndex")) || 0;
 
-  const RANGE = 20;
-  let start = 0;
+  const downloadBtn = document.getElementById("popupDownload");
+  const thumbWrapper = document.querySelector(".thumbSwiper .swiper-wrapper");
 
-  function renderSlides(centerIndex) {
 
-    mainWrapper.innerHTML = "";
-    thumbWrapper.innerHTML = "";
+  // ---------------------------
+  // tạo thumbnail
+  // ---------------------------
 
-    start = Math.max(0, centerIndex - Math.floor(RANGE / 2));
+  photos.forEach((src, index) => {
 
-    if (start + RANGE > photos.length) {
-      start = Math.max(0, photos.length - RANGE);
-    }
+    const slide = document.createElement("div");
+    slide.className = "swiper-slide";
 
-    const end = Math.min(start + RANGE, photos.length);
+    slide.innerHTML = `
+        <img
+            src="${src}"
+            loading="lazy"
+            decoding="async"
+            data-index="${index}">
+    `;
 
-    for (let i = start; i < end; i++) {
+    thumbWrapper.appendChild(slide);
 
-      const mainSlide = document.createElement("div");
-      mainSlide.className = "swiper-slide";
-      mainSlide.innerHTML =
-        `<img src="${photos[i]}" loading="eager" decoding="async">`;
-
-      mainWrapper.appendChild(mainSlide);
-
-      const thumbSlide = document.createElement("div");
-      thumbSlide.className = "swiper-slide";
-      thumbSlide.innerHTML =
-        `<img src="${photos[i]}" loading="lazy" decoding="async">`;
-
-      thumbWrapper.appendChild(thumbSlide);
-    }
-  }
-
-  renderSlides(photoIndex);
-
-  const thumbSwiper = new Swiper(".thumbSwiper", {
-    spaceBetween: 10,
-    slidesPerView: "auto",
-    freeMode: true,
-    watchSlidesProgress: true,
   });
+
+
+  // ---------------------------
+  // Fullscreen Swiper
+  // ---------------------------
 
   const fullscreenSwiper = new Swiper(".fullscreenSwiper", {
 
-    initialSlide: photoIndex - start,
+    virtual: {
+      slides: photos.map(src => `
+            <div class="swiper-slide">
+                <img
+                    src="${src}"
+                    loading="eager"
+                    decoding="async">
+            </div>
+        `)
+    },
+
+    initialSlide: currentIndex,
 
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-
-    thumbs: {
-      swiper: thumbSwiper,
+      prevEl: ".swiper-button-prev"
     }
 
   });
 
-  fullscreenSwiper.slideTo(photoIndex - start, 0);
-  thumbSwiper.slideTo(photoIndex - start, 0);
+
+  // ---------------------------
+  // Thumbnail Swiper
+  // ---------------------------
+
+  const thumbSwiper = new Swiper(".thumbSwiper", {
+    slidesPerView: "auto",
+    spaceBetween: 12,
+    freeMode: true,
+    watchSlidesProgress: true
+
+  });
+
+  // ------------------------------------
+  // Đồng bộ Download
+  // ------------------------------------
+
+  function updateDownload(index) {
+    downloadBtn.href = photos[index];
+    downloadBtn.download = photos[index].split("/").pop();
+  }
+
+  updateDownload(currentIndex);
+
+
+  // ------------------------------------
+  // Active Thumbnail
+  // ------------------------------------
+
+  function updateThumb(index) {
+
+    document
+      .querySelectorAll(".thumbSwiper .swiper-slide")
+      .forEach(slide => {
+        slide.classList.remove("swiper-slide-thumb-active");
+      });
+
+    const activeSlide =
+      document.querySelector(
+        `.thumbSwiper img[data-index="${index}"]`
+      )?.parentElement;
+    if (activeSlide) {
+      activeSlide.classList.add("swiper-slide-thumb-active");
+    }
+    thumbSwiper.slideTo(index);
+
+  }
+
+
+  // ------------------------------------
+  // Fullscreen đổi ảnh
+  // ------------------------------------
 
   fullscreenSwiper.on("slideChange", () => {
-
-    const realIndex = start + fullscreenSwiper.activeIndex;
-
-    if (
-      realIndex < start + 5 ||
-      realIndex > start + RANGE - 5
-    ) {
-
-      photoIndex = realIndex;
-
-      renderSlides(photoIndex);
-
-      fullscreenSwiper.removeAllSlides();
-      thumbSwiper.removeAllSlides();
-
-      const mainSlides = [...mainWrapper.children];
-      const thumbSlides = [...thumbWrapper.children];
-
-      fullscreenSwiper.appendSlide(mainSlides);
-      thumbSwiper.appendSlide(thumbSlides);
-
-      fullscreenSwiper.slideTo(photoIndex - start, 0);
-      thumbSwiper.slideTo(photoIndex - start, 0);
-
-    }
-
+    currentIndex = fullscreenSwiper.activeIndex;
+    updateThumb(currentIndex);
+    updateDownload(currentIndex);
   });
+
+
+  // ------------------------------------
+  // Thumbnail click
+  // ------------------------------------
+
+  document
+    .querySelectorAll(".thumbSwiper img")
+    .forEach(img => {
+      img.addEventListener("click", () => {
+        currentIndex = Number(img.dataset.index);
+        fullscreenSwiper.slideTo(currentIndex);
+        updateThumb(currentIndex);
+        updateDownload(currentIndex);
+      });
+    });
+
+  updateThumb(currentIndex);
+
 </script>
 
 </html>
