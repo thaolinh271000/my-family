@@ -103,27 +103,47 @@
 </body>
 
 <script>
-
   const mainWrapper = document.querySelector(".fullscreenSwiper .swiper-wrapper");
   const thumbWrapper = document.querySelector(".thumbSwiper .swiper-wrapper");
+
   const photos = JSON.parse(sessionStorage.getItem("photos")) || [];
-  const photoIndex = Number(sessionStorage.getItem("photoIndex")) || 0;
+  let photoIndex = Number(sessionStorage.getItem("photoIndex")) || 0;
 
-  photos.forEach(photo => {
+  const RANGE = 20;
+  let start = 0;
 
-    const mainSlide = document.createElement("div");
-    mainSlide.className = "swiper-slide";
-    mainSlide.innerHTML = `<img src="${photo}">`;
-    mainWrapper.appendChild(mainSlide);
+  function renderSlides(centerIndex) {
 
-    const thumbSlide = document.createElement("div");
-    thumbSlide.className = "swiper-slide";
-    thumbSlide.innerHTML = `<img src="${photo}">`;
-    thumbWrapper.appendChild(thumbSlide);
+    mainWrapper.innerHTML = "";
+    thumbWrapper.innerHTML = "";
 
-  });
+    start = Math.max(0, centerIndex - Math.floor(RANGE / 2));
 
-  // Sau khi đã có slide mới khởi tạo Swiper
+    if (start + RANGE > photos.length) {
+      start = Math.max(0, photos.length - RANGE);
+    }
+
+    const end = Math.min(start + RANGE, photos.length);
+
+    for (let i = start; i < end; i++) {
+
+      const mainSlide = document.createElement("div");
+      mainSlide.className = "swiper-slide";
+      mainSlide.innerHTML =
+        `<img src="${photos[i]}" loading="eager" decoding="async">`;
+
+      mainWrapper.appendChild(mainSlide);
+
+      const thumbSlide = document.createElement("div");
+      thumbSlide.className = "swiper-slide";
+      thumbSlide.innerHTML =
+        `<img src="${photos[i]}" loading="lazy" decoding="async">`;
+
+      thumbWrapper.appendChild(thumbSlide);
+    }
+  }
+
+  renderSlides(photoIndex);
 
   const thumbSwiper = new Swiper(".thumbSwiper", {
     spaceBetween: 10,
@@ -132,11 +152,9 @@
     watchSlidesProgress: true,
   });
 
-  console.log(photos);
-  console.log(photoIndex);
-
   const fullscreenSwiper = new Swiper(".fullscreenSwiper", {
-    initialSlide: photoIndex,
+
+    initialSlide: photoIndex - start,
 
     navigation: {
       nextEl: ".swiper-button-next",
@@ -145,20 +163,41 @@
 
     thumbs: {
       swiper: thumbSwiper,
-    },
+    }
+
   });
 
-  fullscreenSwiper.slideTo(photoIndex, 0);
-  thumbSwiper.slideTo(photoIndex, 0);
+  fullscreenSwiper.slideTo(photoIndex - start, 0);
+  thumbSwiper.slideTo(photoIndex - start, 0);
 
-  const img = mainSlide.querySelector("img");
-  img.decoding = "async";
-  img.loading = "eager";
+  fullscreenSwiper.on("slideChange", () => {
 
-  const thumbImg = thumbSlide.querySelector("img");
-  thumbImg.loading = "lazy";
-  thumbImg.decoding = "async";
-  thumbImg.fetchPriority = "low";
+    const realIndex = start + fullscreenSwiper.activeIndex;
+
+    if (
+      realIndex < start + 5 ||
+      realIndex > start + RANGE - 5
+    ) {
+
+      photoIndex = realIndex;
+
+      renderSlides(photoIndex);
+
+      fullscreenSwiper.removeAllSlides();
+      thumbSwiper.removeAllSlides();
+
+      const mainSlides = [...mainWrapper.children];
+      const thumbSlides = [...thumbWrapper.children];
+
+      fullscreenSwiper.appendSlide(mainSlides);
+      thumbSwiper.appendSlide(thumbSlides);
+
+      fullscreenSwiper.slideTo(photoIndex - start, 0);
+      thumbSwiper.slideTo(photoIndex - start, 0);
+
+    }
+
+  });
 </script>
 
 </html>
