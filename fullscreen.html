@@ -68,6 +68,35 @@
     .swiper-button-next {
       color: white;
     }
+
+    /* desktop: 1024px -> 1439px -------------------------------------------------- */
+    @media screen and (max-width: 1439px) {}
+
+    /* tablet: 768px -> 1023px  -------------------------------------------------- */
+    @media (hover:none) and (max-width: 1023px) {}
+
+    /* mobile: 360px -> 767px -------------------------------------------------- */
+    @media screen and (max-width: 767px) {
+      .popup-header {
+        padding: 20px 20px;
+        height: fit-content;
+      }
+
+      .popup-header button {
+        padding: 0;
+      }
+
+      .swiper-button-prev,
+      .swiper-button-next {
+        width: 40px;
+        height: 40px;
+      }
+
+      .swiper-button-prev::after,
+      .swiper-button-next::after {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 
