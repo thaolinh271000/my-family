@@ -4,93 +4,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Gallery</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <script src="root.js"></script>
   <link rel="stylesheet" href="root.css">
 
-  <title>Fullscreen</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+    }
+
+    .fullscreen-popup {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popup-header {
+      height: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      color: white;
+    }
+
+    .swiper {
+      width: 100%;
+    }
+
+    .fullscreenSwiper {
+      flex: 1;
+    }
+
+    .fullscreenSwiper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .thumbSwiper {
+      height: 110px;
+      padding: 10px 40px 20px;
+    }
+
+    .thumbSwiper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+      border-radius: 6px;
+    }
+
+    .swiper-slide-thumb-active img {
+      opacity: 1;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="swiper fullscreenSwiper">
-    <div class="swiper-wrapper"></div>
-  </div>
+  <section class="fullscreen-popup">
 
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
+    <div class="popup-header">
+      <button class="back-btn" onclick="history.back()">
+        <p>← Quay lại</p>
+      </button>
 
-  <script>
-    /* ================================
-       1. DATA (copy từ photos.html)
-    ================================ */
+      <a id="popupDownload" download>
+        <button>
+          <p>Tải về</p>
+        </button>
+      </a>
+    </div>
 
-    const albums = [
-      {
-        photos: [
-          "pics/260524/260524_img0063.jpg",
-          "pics/260524/260524_img0064.jpg",
-          "pics/260524/260524_img0065.jpg",
-          "pics/260524/260524_img0066.jpg",
-          "pics/260524/260524_img0067.jpg"
-        ]
-      }
-    ];
+    <div class="swiper fullscreenSwiper">
+      <div class="swiper-wrapper"></div>
+    </div>
 
-    /* ================================
-       2. GET INDEX FROM URL
-    ================================ */
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
 
-    const params = new URLSearchParams(window.location.search);
-    const startIndex = parseInt(params.get("index") || "0");
+    <div class="swiper thumbSwiper">
+      <div class="swiper-wrapper"></div>
+    </div>
 
-    /* ================================
-       3. FLATTEN IMAGES
-    ================================ */
-
-    const images = albums.flatMap(a => a.photos);
-
-    /* ================================
-       4. RENDER SWIPER
-    ================================ */
-
-    const wrapper = document.querySelector(".fullscreenSwiper .swiper-wrapper");
-
-    images.forEach(src => {
-      const slide = document.createElement("div");
-      slide.className = "swiper-slide";
-
-      slide.innerHTML = `<img src="${src}">`;
-      wrapper.appendChild(slide);
-    });
-
-    /* ================================
-       5. INIT SWIPER (SAFE MODE)
-    ================================ */
-
-    const swiper = new Swiper(".fullscreenSwiper", {
-      loop: false,
-
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-
-      keyboard: {
-        enabled: true
-      }
-    });
-
-    /* ================================
-       6. SET START INDEX
-    ================================ */
-
-    swiper.slideTo(startIndex, 0);
-
-  </script>
+  </section>
 
 </body>
+
+<script>
+
+  const mainWrapper = document.querySelector(".fullscreenSwiper .swiper-wrapper");
+  const thumbWrapper = document.querySelector(".thumbSwiper .swiper-wrapper");
+  const photos = JSON.parse(sessionStorage.getItem("photos")) || [];
+  const photoIndex = Number(sessionStorage.getItem("photoIndex")) || 0;
+
+  photos.forEach(photo => {
+
+    const mainSlide = document.createElement("div");
+    mainSlide.className = "swiper-slide";
+    mainSlide.innerHTML = `<img src="${photo}">`;
+    mainWrapper.appendChild(mainSlide);
+
+    const thumbSlide = document.createElement("div");
+    thumbSlide.className = "swiper-slide";
+    thumbSlide.innerHTML = `<img src="${photo}">`;
+    thumbWrapper.appendChild(thumbSlide);
+
+  });
+
+  // Sau khi đã có slide mới khởi tạo Swiper
+
+  const thumbSwiper = new Swiper(".thumbSwiper", {
+    spaceBetween: 10,
+    slidesPerView: "auto",
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+
+  console.log(photos);
+  console.log(photoIndex);
+
+  const fullscreenSwiper = new Swiper(".fullscreenSwiper", {
+    initialSlide: photoIndex,
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    thumbs: {
+      swiper: thumbSwiper,
+    },
+  });
+
+  fullscreenSwiper.slideTo(photoIndex, 0);
+  thumbSwiper.slideTo(photoIndex, 0);
+</script>
 
 </html>
