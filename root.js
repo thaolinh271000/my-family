@@ -51,6 +51,13 @@ languages.forEach(language => {
 // preview hình và tải hình ---------------------------------------------
 
 const thumbnails = document.querySelectorAll(".pics img");
+
+thumbnails.forEach(img => {
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.fetchPriority = "low";
+});
+
 const preview = document.querySelector(".preview-img");
 const picInfo = document.querySelector(".pic-info");
 const cancelBtn = document.querySelector(".cancel");
