@@ -150,6 +150,15 @@
 
   fullscreenSwiper.slideTo(photoIndex, 0);
   thumbSwiper.slideTo(photoIndex, 0);
+
+  const img = mainSlide.querySelector("img");
+  img.decoding = "async";
+  img.loading = "eager";
+
+  const thumbImg = thumbSlide.querySelector("img");
+  thumbImg.loading = "lazy";
+  thumbImg.decoding = "async";
+  thumbImg.fetchPriority = "low";
 </script>
 
 </html>
